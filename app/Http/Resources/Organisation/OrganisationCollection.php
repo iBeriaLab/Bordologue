@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources\Organisation;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\Resource;
 
-class OrganisationCollection extends ResourceCollection
+class OrganisationCollection extends Resource
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +14,13 @@ class OrganisationCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'name' => $this->name,
+            'image' => $this->image,
+            'rating' => $this->reviews->count() > 0 ? round($this->reviews->sum('star')/$this->reviews->count(),2) : 'No Rating',
+            'href' => [
+                'link' => route('organisations.show',$this->id)
+            ]
+        ];
     }
 }

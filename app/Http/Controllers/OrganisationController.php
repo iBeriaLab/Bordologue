@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Organisation\OrganisationResource;
+use App\Http\Resources\Organisation\OrganisationCollection;
 use App\Model\Organisation;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        return Organisation::all();
+        return OrganisationCollection::collection(Organisation::all());
     }
 
     /**
