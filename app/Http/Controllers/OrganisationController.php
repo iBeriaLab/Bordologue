@@ -108,6 +108,7 @@ class OrganisationController extends Controller
      */
     public function destroy(Organisation $organisation)
     {
-        //
+        $organisation->delete();
+        return response(null,Response::HTTP_NO_CONTENT);
     }
 }
