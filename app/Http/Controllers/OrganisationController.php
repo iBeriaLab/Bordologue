@@ -16,7 +16,7 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        return OrganisationCollection::collection(Organisation::all());
+        return OrganisationCollection::collection(Organisation::paginate(20));
     }
 
     /**
