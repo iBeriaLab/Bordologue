@@ -46,7 +46,7 @@ class OrganisationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Organisation $organisation)
-    {return $organisation;
+    {
         return new OrganisationResource($organisation);
     }
 

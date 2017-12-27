@@ -23,6 +23,10 @@ class OrganisationResource extends Resource
             'email' => $this->email,
             'longitude' => $this->longitude,
             'latitude' => $this->latitude,
+            'rating' => $this->reviews->count() > 0 ? round($this->reviews->sum('star')/$this->reviews->count(),2) : 'No Rating',
+            'href' => [
+                'reviews' => route('reviews.index',$this->id)
+            ]
         ];
     }
 }

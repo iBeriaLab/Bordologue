@@ -20,6 +20,6 @@ Route::group(['namespace' => 'Articles', 'prefix' => '/articles'], function (){
 
 Route::apiResource('/organisations', 'OrganisationController');
 
-Route::group(['prefix'=>'organisation'], function (){
+Route::group(['prefix'=>'organisations'], function (){
     Route::apiResource('/{organisation}/reviews','ReviewController');
 });
