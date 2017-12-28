@@ -33,6 +33,15 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue')
 );
 
+/* Account Home */
+
+Vue.component(
+    'account-home',
+    require('./components/Account/AccountHome.vue')
+);
+
+/* End Account Home */
+
 
 const app = new Vue({
     el: '#app'
