@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\OrganisationNotBelongsToUser;
 use App\Http\Requests\OrganisationRequest;
 use App\Http\Resources\Organisation\OrganisationResource;
 use App\Http\Resources\Organisation\OrganisationCollection;
 use App\Model\Organisation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Mockery\Exception;
 use Symfony\Component\HttpFoundation\Response;
 
 class OrganisationController extends Controller
@@ -91,6 +94,7 @@ class OrganisationController extends Controller
      */
     public function update(Request $request, Organisation $organisation)
     {
+        $this->OrganisationUserCheck($organisation);
         $request['detail'] = $request->description;
         unset($request['description']);
         $organisation->update($request->all());
@@ -108,7 +112,15 @@ class OrganisationController extends Controller
      */
     public function destroy(Organisation $organisation)
     {
+        $this->OrganisationUserCheck($organisation);
         $organisation->delete();
         return response(null,Response::HTTP_NO_CONTENT);
+    }
+
+    public function OrganisationUserCheck($organisation)
+    {
+        if(Auth::id() !== $organisation->user_id){
+            throw new OrganisationNotBelongsToUser;
+        }
     }
 }

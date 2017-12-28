@@ -17,11 +17,13 @@ class CreateOrganisationsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('detail');
+            $table->string('image');
             $table->string('address');
             $table->string('phone');
             $table->string('email');
             $table->string('longitude');
             $table->string('latitude');
+            $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });
     }

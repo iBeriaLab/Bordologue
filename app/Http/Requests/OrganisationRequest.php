@@ -32,6 +32,7 @@ class OrganisationRequest extends FormRequest
             'email' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
+            'user_id' => 'required'
         ];
     }
 }

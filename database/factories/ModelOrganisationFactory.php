@@ -12,5 +12,8 @@ $factory->define(App\Model\Organisation::class, function (Faker $faker) {
         'email' => $faker->email,
         'longitude' => $faker->longitude,
         'latitude' => $faker->latitude,
+        'user_id' => function(){
+            return App\User::all()->random();
+        },
     ];
 });
